@@ -54,7 +54,7 @@ npm install  # or yarn install
 Create a `.env.local` file and add:
 ```
 NEXT_PUBLIC_CLERK_FRONTEND_API=<your-clerk-api>
-CLERK_API_KEY=<your-clerk-backend-api>
+
 OPENAI_API_KEY=<your-openai-api>
 ```
 
