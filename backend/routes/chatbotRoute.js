@@ -1,12 +1,13 @@
 import express from "express";
-import OpenAI from "openai";
 import dotenv from "dotenv";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 dotenv.config();
 
 const router = express.Router();
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+// Initialize Gemini API with API Key
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 router.post("/chat", async (req, res) => {
   const { query } = req.body;
@@ -27,14 +28,14 @@ router.post("/chat", async (req, res) => {
   }
 
   try {
-    const response = await openai.chat.completions.create({
-      model: "gpt-4-turbo",
-      messages: [{ role: "system", content: "You are a financial assistant providing stock and market insights." }, { role: "user", content: query }],
-      temperature: 0.5,
-      max_tokens: 150,
+    // Use Gemini 1.5 Flash model
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+    const response = await model.generateContent({
+      contents: [{ role: "user", parts: [{ text: query }] }],
     });
 
-    const answer = response.choices?.[0]?.message?.content || "No response from AI.";
+    const answer = response.response.candidates?.[0]?.content?.parts?.[0]?.text || "No response from AI.";
     console.log(`AI Response: ${answer}`);
 
     res.json({ answer });
