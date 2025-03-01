@@ -70,12 +70,6 @@ The app will be available at [https://67c11dc5bb6b8c83f9d4092e--legendary-selkie
 - Access the AI chatbot for market insights.
 - Explore stock trends, analytics, and reports on the dashboard.
 
-## 📜 License
-This project is open-source and available under the MIT License.
-
-## 🌟 Contributing
-We welcome contributions! Feel free to open issues or submit pull requests.
-
 ## 📬 Contact
 For queries, reach out via **Email** or connect on **LinkedIn**.
 
